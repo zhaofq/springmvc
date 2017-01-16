@@ -1,0 +1,130 @@
+@charset "utf-8";
+.index {
+	background:#f0f0ef;
+	height: 955px;
+}
+
+.index .indexbox{
+	box-shadow: 6px 6px 3px #888888;
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);    /* 50%为自身尺寸的一半 */
+	background:#fafafd;
+	height: 300px;
+	width: 600px;
+	border-radius: 15px;
+    border: 2px solid #e1e1e0;
+    padding: 20px;
+}
+
+.index .indexTitle{
+	height: 30px;
+	width: 300px;
+    position: relative; left: 150px; top: 30px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    float: left;
+    margin-left: 38px;
+}
+.p1 {
+	width: 300px;
+    position: relative; left: -130px; top: 0px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 38px;
+}
+.p2 {
+	width: 300px;
+    position: relative; left: -120px; top: -60px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 38px;
+}
+.mobile {
+	width: 300px;
+    position: relative; left: 30px; top: -52px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 38px;
+	border-radius: 10px;
+	outline:none;
+	cursor:pointer;
+	height:35px;
+}
+.password {
+	width: 300px;
+    position: relative; left: 20px; top: -42px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    float: left;
+    margin-left: 38px;
+	border-radius: 10px;
+	outline:none;
+	cursor:pointer;
+	height:35px;
+}
+.loginIn {
+	width: 300px;
+    position: relative; left: -130px; top: -80px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 200px;
+}
+.loginIn  .button{
+	width: 300px;
+    position: relative; left: -93px; top: -28px;
+	background:#2a5caa;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 0px;
+	border-radius: 10px;
+	outline:none;
+	cursor:pointer;
+	height:35px;
+}
+.forgetps{
+	width: 300px;
+	height:100px;
+    position: relative; right: -340px; top: -250px;
+    float: right;
+    margin-left: 0px;
+	font-size:14px;
+	
+}
+.register{
+	width: 300px;
+	height:100px;
+    position: relative; right: -290px; top: -121px;
+    float: right;
+    margin-left: 0px;
+	font-size:14px;
+	
+}
+.otherway{
+	width: 300px;
+	height:100px;
+    position: relative; right: 180px; top: -377px;
+    float: right;
+    margin-left: 0px;
+	font-size:14px;
+	
+}
+a{
+	text-decoration:none;
+	color:#426ab3;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>springmvc</display-name>
+	<!--  Spring 容器启动监听器：
+	      spring+springmvc时需要用ApplicationContext来构建BeanFactory来处理业务加载bean，
+	               而ApplicationContext需要通过ContextLoaderListener来实现装载，
+	               所以需要ContextLoaderListener监听容器启动，通过applicationContext.xml来加载需要分bean，applicationContext.xml中配置了业务层需要的bean，
+	      applicationContext.xml默认是放在WEB-INF，也可以自己创建，目录存放-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:config/applicationContext.xml</param-value>
+    </context-param>
+    
+    
+    <!-- dispatcher -->
+    <!-- 如果单纯的一个springMVC就是下面的配置：
+         1:加载前端控制器DispatcherServlet，然后获得DispatcherServlet的配置文件dispatcher-servlet.xml。
+         2:dispatcher-servlet.xml文件说明：如果不配置此文件的位置，就必须在WEB-INF下创建一个名字dispatcher-servlet.xml的文件：用来springmvc配置，
+                       也可以自己在自己的文件夹下排至，名字也可以命名如：我把配置文件放在了src下面的一个文件夹下，名字为spring-mvc.xml -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+    	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>log4jConfiguration</param-name>
+		<param-value>log4j2.xml</param-value>
+	</context-param>
+	<welcome-file-list>
+		<welcome-file>*/index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
+    

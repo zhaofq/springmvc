@@ -1,0 +1,116 @@
+@charset "utf-8";
+.index-register {
+	background:#f0f0ef;
+	height: 955px;
+}
+
+.indexbox-register{
+	box-shadow: 6px 6px 3px #888888;
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);    /* 50%为自身尺寸的一半 */
+	background:#fafafd;
+	height: 600px;
+	width: 500px;
+	border-radius: 15px;
+    border: 2px solid #e1e1e0;
+    padding: 20px;
+}
+
+.indexTitle-register{
+	height: 30px;
+	width: 300px;
+    position: relative; left: 118px; top: 30px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    float: left;
+    margin-left: 38px;
+}
+.title-register{
+	height: 30px;
+	width: 300px;
+    position: relative; left: 30px; top: 0px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    float: left;
+
+}
+.p1-register {
+	width: 300px;
+    position: relative; left: -130px; top: -20px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+
+    float: left;
+    margin-left: 38px;
+}
+.p2-register {
+	width: 300px;
+    position: relative; left: -120px; top: -60px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 38px;
+}
+.mobile-register {
+	width: 300px;
+    position: relative; left: 30px; top: -72px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 38px;
+	border-radius: 10px;
+	outline:none;
+	cursor:pointer;
+	height:35px;
+}
+.password-register {
+	width: 300px;
+    position: relative; left: 20px; top: -62px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    float: left;
+    margin-left: 38px;
+	border-radius: 10px;
+	outline:none;
+	cursor:pointer;
+	height:35px;
+}
+
+.button-register{
+	width: 300px;
+    position: relative; left: -53px; top: -60px;
+	background:#2a5caa;
+    padding: 0px;
+    font-size: 20px;
+    height: auto;
+    float: left;
+    margin-left: 0px;
+	border-radius: 10px;
+	outline:none;
+	cursor:pointer;
+	height:35px;
+}
+.register-logop{
+	width: 300px;
+    position: relative;top: -22px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    float: left;
+}
+.register-logos{
+	width: 300px;
+    position: relative;top: -22px;
+	background:#fafafd;
+    padding: 0px;
+    font-size: 20px;
+    float: left;
+}
