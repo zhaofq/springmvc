@@ -2,6 +2,7 @@ package com.java.spring.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,10 @@ public abstract class BaseRedisDao<K,V> {
 	
 	@Autowired(required=true)  
     protected RedisTemplate<K, V> redisTemplate;
+	
+	
+	@Autowired(required=true)  
+    protected StringRedisTemplate stringRedisTemplate ;
 	/** 
      * 设置redisTemplate 
      * @param redisTemplate the redisTemplate to set 
@@ -29,5 +34,10 @@ public abstract class BaseRedisDao<K,V> {
      */  
     protected RedisSerializer<String> getRedisSerializer() {  
         return redisTemplate.getStringSerializer();  
-    }  
+    }
+
+	public void setStringRedisTemplate(StringRedisTemplate stringRedisTemplate) {
+		this.stringRedisTemplate = stringRedisTemplate;
+	}
+    
 }

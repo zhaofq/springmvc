@@ -1,7 +1,8 @@
 package com.java.spring.dao;
 
+import java.util.Map;
+
 import com.java.spring.pojo.User;
-import com.java.spring.vo.UserVo;
 
 /**
 * @author 作者:zhaofq
@@ -12,7 +13,11 @@ public interface UserDao {
    
 	public User addUser(User user);
 
-	public User getUserByMobile(String mobile);
-
+//	public User getUserByMobile(String mobile);
+    
+	public Map<String, User> getUserByMobile(String mobile);
+	
 	public Boolean forgetPassword(User user);
+
+	public void forgetPassword(String userMobile, String password, String passwordVla);
 }

@@ -2,6 +2,7 @@ package com.java.spring.serviceImpl;
 
 import java.security.GeneralSecurityException;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,28 +67,31 @@ public class UserServiceImpl implements UserService {
 	@SuppressWarnings("unused")
 	@Override
 	public Message login(HttpServletRequest request, UserVo userVo) {
-		Message message = new Message();
-		try {
+Message message = new Message();
+/*			try {
 			
-			User user = this.getUserByMobile(cipher.encrypt(userVo.getMobile()));
-			if (null != user) {
-				user.getMobile();
-				user.getPassPhrase();
-				if (userVo.getMobile().equals(user.getMobile())) {
-				} else {
-				}
+////			User user = this.getUserByMobile(cipher.encrypt(userVo.getMobile()));
+//			if (null != user) {
+//				user.getMobile();
+//				user.getPassPhrase();
+//				if (userVo.getMobile().equals(user.getMobile())) {
+//				} else {
+//				}
 			} else {
 				message.setCode(1);
 				message.setMessage("用户不存在");
 			}
 		} catch (GeneralSecurityException e) {
 			e.printStackTrace();
-		}
+		}*/
 		return message;
 	}
 
    
-	private User getUserByMobile(String mobile) {
+/*	private User getUserByMobile(String mobile) {
+		return userDao.getUserByMobile(mobile);
+	}*/
+	private Map<String, User> getUserByMobile(String mobile) {
 		return userDao.getUserByMobile(mobile);
 	}
 
@@ -95,20 +99,33 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Message forgetPassword(HttpServletRequest request, UserVo userVo) {
 		Message message = new Message();
+		userVo.setMobile("15313928125");
+		userVo.setPassword("963852741");
+      /*User user =  getUserByMobile(cipher.encrypt(userVo.getMobile()));
+		User user =  getUserByMobile(cipher.encrypt(userVo.getMobile()));
+		if(null != user){
+			user.setMobile(cipher.encrypt(userVo.getMobile()));
+			user.setPassPhrase(Password.getPassphrase(user.getSalt(),userVo.getPassword()));
+			userDao.forgetPassword(user);
+		}else{
+			
+		}*/
+		
+		
 		try {
-			userVo.setMobile("12345678999");
-			userVo.setPassword("963852741");
-			User user =  getUserByMobile(cipher.encrypt(userVo.getMobile()));
+			Map<String, User> user = getUserByMobile(cipher.encrypt(userVo.getMobile()));
+			String salt =String.valueOf(user.get("salt"));
+			String userMobile =String.valueOf(user.get("mobile"));
 			if(null != user){
-				user.setMobile(user.getMobile());
-				user.setPassPhrase(Password.getPassphrase(user.getSalt(),userVo.getPassword()));
-				userDao.forgetPassword(user);
-			}else{
-				
+				String password = null;
+				String passwordVla = Password.getPassphrase(salt,"987654321");
+				userDao.forgetPassword(userMobile,password,passwordVla);
 			}
 		} catch (GeneralSecurityException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
 
