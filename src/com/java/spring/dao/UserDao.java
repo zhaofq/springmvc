@@ -1,7 +1,5 @@
 package com.java.spring.dao;
 
-import java.util.Map;
-
 import com.java.spring.pojo.User;
 
 /**
@@ -10,14 +8,13 @@ import com.java.spring.pojo.User;
 * 类说明
 */
 public interface UserDao {
-   
-	public User addUser(User user);
-
-//	public User getUserByMobile(String mobile);
-    
-	public Map<String, User> getUserByMobile(String mobile);
+	public User getUserByMobilefromSql(String mobile);
 	
-	public Boolean forgetPassword(User user);
+	public int forgetPassword(User user);
 
-	public void forgetPassword(String userMobile, String password, String passwordVla);
+	public int forgetPassword(String userMobile, String password, String passwordVla);
+
+	public int addUser(User user);
+
+	
 }

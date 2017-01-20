@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 		
 	<!-- scanner redis properties -->
-	<context:property-placeholder location="**/redis.properties" />
+	<!-- <context:property-placeholder location="**/redis.properties" /> -->
 	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<property name="maxIdle" value="${redis.maxIdle}" />
 		<property name="maxTotal" value="${redis.maxTotal}" />

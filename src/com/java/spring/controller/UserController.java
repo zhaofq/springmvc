@@ -27,7 +27,6 @@ public class UserController {
 	 @RequestMapping(value = "/registerUser",method=RequestMethod.POST)
      public @ResponseBody Message registerUser(HttpServletRequest request,User user) {
 		return userService.registerUser(request,user);
-		
 	}
 	 @RequestMapping(value = "/login",method=RequestMethod.POST)
      public @ResponseBody Message login(HttpServletRequest request,UserVo userVo) {

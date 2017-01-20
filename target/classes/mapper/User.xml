@@ -9,4 +9,37 @@
 		(#{id},#{email},#{IdNumber},#{birthDate},#{lastLoginDate},#{loginName},
 		#{mobile},#{name},#{passPhrase},#{registerDate},#{salt})
 	</insert>
+
+	<select id="getUserByMobilefromSql" parameterType="String"
+		resultType="com.java.spring.pojo.User">
+		SELECT
+		ID,
+		EMAIL,
+		IDNUMBER,
+		BIRTHDATE,
+		LASTLOGINDATE,
+		LOGINNAME,
+		MOBILE,
+		NAME,
+		PASSPHRASE,
+		REGISTERDATE,
+		SALT FROM TB_USER WHERE
+		<if test="_parameter!= null">
+			MOBILE=#{_parameter}
+		</if>
+	</select>
+	<update id="forgetPassword" parameterType="Stirng">
+		update TB_USER
+		SET 
+		<if test="EMAIL!=null">EMAIL=#{email},</if>
+		<if test="IDNUMBER!=null">IDNUMBER=#{IdNumber},</if>
+		<if test="BIRTHDATE!=null">BIRTHDATE=#{birthDate},</if>
+		<if test="MOBILE!=null">MOBILE=#{mobile},</if>
+		<if test="NAME!=null">NAME=#{name},</if>
+		<if test="PASSPHRASE!=null">PASSPHRASE=#{passPhrase},</if>
+		<if test="REGISTERDATE!=null">REGISTERDATE=#{registerDate},</if>
+		<if test="LASTLOGINDATE!=null">LASTLOGINDATE=#{lastLoginDate},</if>
+		<if test="MOBILE!=null">MOBILE=#{status}</if>
+        where mobile = #{mobile}
+	</update>
 </mapper>

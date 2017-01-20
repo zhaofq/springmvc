@@ -1,20 +1,13 @@
-package com.java.spring.daoImpl;
+package com.java.spring.redisdaoImpl;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.data.redis.core.BoundHashOperations;
-import org.springframework.data.redis.core.BoundValueOperations;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.java.spring.dao.BaseRedisDao;
-import com.java.spring.dao.UserDao;
 import com.java.spring.pojo.User;
+import com.java.spring.redisdao.BaseRedisDao;
+import com.java.spring.redisdao.RedisUserDao;
 import com.java.spring.util.utils.JsonMapper;
 
 /**
@@ -22,13 +15,13 @@ import com.java.spring.util.utils.JsonMapper;
  * @version 创建时间：2017年1月10日 下午3:16:16 类说明
  */
 @Repository
-public class UserDaoImpl extends BaseRedisDao<String, User> implements UserDao {
+public class UserDaoImpl extends BaseRedisDao<String, User> implements RedisUserDao {
 
 	/**
 	 * Hash类型数据的set方式：储存的是一个key-object;需要的filed的valus时需要将整个object反序列化，
 	 * 操作完成需要将整个object再次序列化然后保存
 	 *//*
-		 * public User addUser(User user) { User user2 =new User();
+		 * public User addUsersql(User user) { User user2 =new User();
 		 * ValueOperations<String, User> valueops = redisTemplate.opsForValue();
 		 * valueops.set(user.getMobile(), user); user2 =
 		 * valueops.get(user.getMobile()); return user2; }
@@ -52,11 +45,11 @@ public class UserDaoImpl extends BaseRedisDao<String, User> implements UserDao {
 	 * = valueops.get(user.getMobile()); System.out.println(valueops.get(key));
 	 * } return ccBoolean; }
 	 */
-
+    
 	/**
 	 * Hash类型数据Hmset方式：
 	 */
-	@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
 	public User addUser(User user) {
 		Map<String, String> map = (Map<String, String>) JsonMapper.parseObject(user, Map.class);
 		redisTemplate.opsForHash().putAll(user.getMobile(), map);
@@ -64,7 +57,6 @@ public class UserDaoImpl extends BaseRedisDao<String, User> implements UserDao {
 	}
 	
 	public Map<String, User> getUserByMobile(String mobile) {
-		User user = new User();
 		BoundHashOperations<String, String, User> boundHashOperations = redisTemplate.boundHashOps(mobile);
 		Map<String, User> users = boundHashOperations.entries();
 		System.out.println(users);
@@ -80,8 +72,16 @@ public class UserDaoImpl extends BaseRedisDao<String, User> implements UserDao {
 	}
 
 	@Override
+	public User getUserByMobilefromSql(String mobile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public Boolean forgetPassword(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }
