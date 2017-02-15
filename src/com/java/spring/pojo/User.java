@@ -115,15 +115,6 @@ public class User implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", Id=" + Id
-				+ ", email=" + email + ", IdNumber=" + IdNumber + ", birthDate=" + birthDate + ", lastLoginDate="
-				+ lastLoginDate + ", loginName=" + loginName + ", mobile=" + mobile + ", name=" + name + ", passPhrase="
-				+ passPhrase + ", registerDate=" + registerDate + ", salt=" + salt + "]";
-	}
-
-	
     
     
     

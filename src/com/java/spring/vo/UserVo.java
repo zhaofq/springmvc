@@ -25,6 +25,12 @@ public class UserVo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "UserVo [mobile=" + mobile + ", password=" + password + ", passwords=" + passwords + "]";
+	}
+	
 	
 	
 } 

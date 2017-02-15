@@ -2,6 +2,7 @@ package com.java.spring.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.java.spring.pojo.User;
 import com.java.spring.service.UserService;
 import com.java.spring.util.system.Message;
+import com.java.spring.util.system.log.SystemControllerLog;
+import com.java.spring.util.system.log.SystemServiceLog;
 import com.java.spring.vo.UserVo;
 
 /**
@@ -28,8 +31,10 @@ public class UserController {
      public @ResponseBody Message registerUser(HttpServletRequest request,User user) {
 		return userService.registerUser(request,user);
 	}
-	 @RequestMapping(value = "/login",method=RequestMethod.POST)
-     public @ResponseBody Message login(HttpServletRequest request,UserVo userVo) {
+	 
+	 @RequestMapping(value = "/login")
+	 @SystemControllerLog(description="用户登录")
+     public @ResponseBody Message login(HttpServletRequest request,String mobile,String password,UserVo userVo) {
 		return userService.login(request,userVo);
 		
 	}

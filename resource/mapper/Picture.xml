@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='com.java.spring.dao.PictureDao'>
+	<insert id="addPicture" parameterType="com.java.spring.pojo.Picture">
+		insert into
+		TB_PICTURE(Id,URL,DESCRIPTION,CREATEDATE,USUERID,NAME)
+		values
+		(#{id},#{url},#{discription},#{createadate},#{userId},#{name})
+	</insert>
+
+	<select id="findPictures" parameterType="com.java.spring.pojo.Picture"
+		resultType="com.java.spring.vo.PictureVo">
+		SELECT
+		Id id,URL url,DESCRIPTION discription,CREATEDATE createadate,USUERID userId,NAME name FROM TB_PICTURE 
+		<!-- WHERE TB_PICTURE<if test="_parameter!= null">
+			MOBILE=#{userId}
+		</if> -->
+	</select>
+</mapper>

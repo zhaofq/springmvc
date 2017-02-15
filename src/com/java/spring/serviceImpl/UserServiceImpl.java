@@ -18,6 +18,7 @@ import com.java.spring.service.UserService;
 import com.java.spring.util.system.DESTextCipher;
 import com.java.spring.util.system.Message;
 import com.java.spring.util.system.Password;
+import com.java.spring.util.system.log.SystemServiceLog;
 import com.java.spring.vo.UserVo;
 
 /**
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	RedisUserDao redisUserDao;
 
-	@Override
+	
 	public Message registerUser(HttpServletRequest request, User user) {
 		Message message = new Message();
 		if (null != user) {
@@ -59,6 +60,7 @@ public class UserServiceImpl implements UserService {
 						int result = userDao.addUser(user);
 						if (result != 0) {
 							redisUserDao.addUser(user);
+							request.getSession().setAttribute("userInfo", user);
 							return new Message(1, "注册成功");
 						} else {
 
@@ -79,7 +81,11 @@ public class UserServiceImpl implements UserService {
 	public Message login(HttpServletRequest request, UserVo userVo) {
 		Message message = new Message();
 		try {
+			String mString = request.getParameter("mobile");
+			String mpassword = request.getParameter("password");
+			System.out.println(mString+"------------"+mpassword);
 			String mobile = cipher.encrypt(userVo.getMobile());
+			System.out.println(userVo.getMobile());
 			Map<String, User> usermap = this.getUserByMobile(cipher.encrypt(userVo.getMobile()));
 			if (usermap.isEmpty()) {
 				User user = getUserByMobilefromSql(mobile);
@@ -88,6 +94,7 @@ public class UserServiceImpl implements UserService {
 				} else {
 					String salt = user.getSalt();
 					if (user.getPassPhrase().endsWith(Password.getPassphrase(salt, userVo.getPassword()))) {
+						request.getSession().setAttribute("userInfo", user);
 						return new Message(0, "登录成功");
 					} else {
 						return new Message(0, "密码错误");
@@ -97,6 +104,10 @@ public class UserServiceImpl implements UserService {
 				String salt = String.valueOf(usermap.get("salt"));
 				String passPhrase = String.valueOf(usermap.get("passPhrase"));
 				if (passPhrase.endsWith(Password.getPassphrase(salt, userVo.getPassword()))) {
+					User user = new User();
+					user.setMobile(mobile);
+                    user.setPassPhrase(passPhrase);
+					request.getSession().setAttribute("userInfo", user);
 					return new Message(0, "登录成功");
 				} else {
 					return new Message(0, "密码错误");
@@ -130,15 +141,38 @@ public class UserServiceImpl implements UserService {
 		 */
 
 		try {
-			Map<String, User> user = getUserByMobile(cipher.encrypt(userVo.getMobile()));
-			String salt = String.valueOf(user.get("salt"));
-			String userMobile = String.valueOf(user.get("mobile"));
-			if (null != user) {
-				String password = null;
-				String passwordVla = Password.getPassphrase(salt, "123456456789");
-				int result = userDao.forgetPassword(userMobile, password, passwordVla);
-				// int result = userDao.forgetPassword(userMobile, password,
-				// passwordVla);
+			String mobile = cipher.encrypt("15313928125");
+			Map<String, User> usermap = getUserByMobile(mobile);
+			User user = new User();
+			if (!usermap.isEmpty()) {
+				String salt = String.valueOf(usermap.get("salt"));
+				String userMobile = String.valueOf(usermap.get("mobile"));
+				String passwordVla = Password.getPassphrase(salt, "123456");
+				user.setMobile(userMobile);
+				user.setPassPhrase(passwordVla);
+				int reusl = userDao.forgetPassword(user);
+				redisUserDao.forgetPassword(userMobile,passwordVla);
+				if (0 != reusl) {
+					return new Message(0,"忘记密码修改成功");
+				} else {
+					return new Message(1,"忘记密码修改失败");
+				}
+			}else{
+				user = this.getUserByMobilefromSql(mobile);
+				if (null != user) {
+					String userMobile = user.getMobile();
+					String passwordVla = Password.getPassphrase(user.getSalt(), "123456");
+					user.setPassPhrase(passwordVla);
+					int reusl = this.userDao.forgetPassword(user);
+					redisUserDao.forgetPassword(userMobile,passwordVla);
+					if (0 != reusl) {
+						return new Message(0,"忘记密码修改成功");
+					} else {
+						return new Message(1,"忘记密码修改失败");
+					}
+				} else {
+					return new Message(1,"用户不存在");
+				}
 			}
 		} catch (GeneralSecurityException e) {
 

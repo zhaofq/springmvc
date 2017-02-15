@@ -9,6 +9,7 @@ $(function(){
              success: function(data){
             	       console.log(data);
                       $('#resText').empty();   //清空resText里面的所有内容
+                      window.location.href = "index.html";
              }
          });
     });

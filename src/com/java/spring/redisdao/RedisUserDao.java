@@ -11,17 +11,11 @@ import com.java.spring.pojo.User;
 */
 public interface RedisUserDao {
 
-	//访问redis
-   public User addUser(User user);
-	
-	//访问redis
-	public Map<String, User> getUserByMobile(String mobile);
-	   //访问mysql
-	public User getUserByMobilefromSql(String mobile);
-	
-	public Boolean forgetPassword(User user);
+    public User addUser(User user);
 
-	public void forgetPassword(String userMobile, String password, String passwordVla);
+	public Map<String, User> getUserByMobile(String mobile);
+
+	public void forgetPassword(String userMobile,String passwordVla);
 
 	
 }

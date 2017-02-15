@@ -9,6 +9,22 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aspects</artifactId>
+		    <version>4.2.6.RELEASE</version>
+		</dependency>
+			
+		<dependency>
+		    <groupId>aopalliance</groupId>
+		    <artifactId>aopalliance</artifactId>
+		    <version>1.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>aspectj</groupId>
+		    <artifactId>aspectjrt</artifactId>
+		    <version>1.5.4</version>
+		</dependency>
+		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
 			<version>1.6</version>
@@ -186,6 +202,17 @@
 		    <artifactId>catch-exception</artifactId>
 		    <version>1.2.0</version>
 		</dependency>
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
+		<!-- aliyun MQ -->
+		<dependency>
+		  <groupId>com.aliyun.openservices</groupId>
+		  <artifactId>ons-client</artifactId>
+		  <version>1.2.1</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<plugins>
