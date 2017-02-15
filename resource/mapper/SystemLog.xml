@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='com.java.spring.dao.SystemLogDao'>
+	<insert id="save" parameterType="com.java.spring.pojo.SystemLog">
+		INSERT INTO SYSTEMLOG
+            (ID,
+             DESCRIPTION,
+             EXCEPTIONCODE,
+             TYPE,
+             EXCEPTIONDETAIL,
+             METHOD,
+             PARAMS,
+             CREATEUSER,
+             CREATEDATE,
+             IP)
+		VALUES (#{id},
+		        #{description},
+		        #{exceptionCode},
+				#{type},
+				#{exceptionDetail},
+				#{method},#{params},
+				#{createUser},#{createDate},#{ip});
+	</insert>
+</mapper>

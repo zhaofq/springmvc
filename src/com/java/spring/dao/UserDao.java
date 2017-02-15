@@ -12,8 +12,6 @@ public interface UserDao {
 	
 	public int forgetPassword(User user);
 
-	public int forgetPassword(String userMobile, String password, String passwordVla);
-
 	public int addUser(User user);
 
 	

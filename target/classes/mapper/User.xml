@@ -28,18 +28,17 @@
 			MOBILE=#{_parameter}
 		</if>
 	</select>
-	<update id="forgetPassword" parameterType="Stirng">
+	<update id="forgetPassword" parameterType="com.java.spring.pojo.User">
 		update TB_USER
-		SET 
-		<if test="EMAIL!=null">EMAIL=#{email},</if>
-		<if test="IDNUMBER!=null">IDNUMBER=#{IdNumber},</if>
-		<if test="BIRTHDATE!=null">BIRTHDATE=#{birthDate},</if>
-		<if test="MOBILE!=null">MOBILE=#{mobile},</if>
-		<if test="NAME!=null">NAME=#{name},</if>
-		<if test="PASSPHRASE!=null">PASSPHRASE=#{passPhrase},</if>
-		<if test="REGISTERDATE!=null">REGISTERDATE=#{registerDate},</if>
-		<if test="LASTLOGINDATE!=null">LASTLOGINDATE=#{lastLoginDate},</if>
-		<if test="MOBILE!=null">MOBILE=#{status}</if>
-        where mobile = #{mobile}
+			<set> 
+				<if test="email !=null">EMAIL= #{email},</if>
+				<if test="IdNumber !=null">IDNUMBER=#{IdNumber},</if>
+				<if test="birthDate !=null">BIRTHDATE=#{birthDate},</if>
+				<if test="name !=null">NAME=#{name},</if>
+				<if test="passPhrase !=null">PASSPHRASE=#{passPhrase},</if>
+				<if test="registerDate !=null">REGISTERDATE=#{registerDate},</if>
+				<if test="lastLoginDate !=null">LASTLOGINDATE=#{lastLoginDate}</if>
+			</set>
+        where MOBILE = #{mobile}
 	</update>
 </mapper>

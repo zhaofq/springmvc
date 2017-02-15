@@ -15,7 +15,7 @@ import com.java.spring.util.utils.JsonMapper;
  * @version 创建时间：2017年1月10日 下午3:16:16 类说明
  */
 @Repository
-public class UserDaoImpl extends BaseRedisDao<String, User> implements RedisUserDao {
+public class RedisUserDaoImpl extends BaseRedisDao<String, User> implements RedisUserDao {
 
 	/**
 	 * Hash类型数据的set方式：储存的是一个key-object;需要的filed的valus时需要将整个object反序列化，
@@ -66,21 +66,9 @@ public class UserDaoImpl extends BaseRedisDao<String, User> implements RedisUser
 	/**
 	 * Hash类型数据的set方式：修改某条数据的每个字段，是通过key获得整条数据，然后反序列化，从新给对应的filed赋值，再次set整体数据。
 	 */
-	public void forgetPassword(String userMobile, String password, String passwordVla) {
+	public void forgetPassword(String userMobile,String passwordVla) {
 		BoundHashOperations<String, String, Object> boundHashOperations = redisTemplate.boundHashOps(userMobile);
 		boundHashOperations.put("passPhrase", passwordVla);
-	}
-
-	@Override
-	public User getUserByMobilefromSql(String mobile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Boolean forgetPassword(User user) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 
